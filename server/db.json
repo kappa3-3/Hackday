@@ -1,0 +1,9 @@
+{
+  "players": [
+    {
+      "playerX" : "Patryk",
+      "playerO" : "Levy",
+      "winner" : "Patryk"
+    }
+  ]  
+}
