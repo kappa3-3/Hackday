@@ -6,10 +6,6 @@ export default class EndGame extends Component{
     this.setState = this.props.state;
   }
 
-  componentDidMount(){
-
-  }
-
   render(){
     const {winner, playerO, playerX} = this.props;
     return(

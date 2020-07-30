@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'react-uuid';
 
 export default class Board extends Component {
   constructor(props) {
@@ -24,23 +25,28 @@ export default class Board extends Component {
   refreshPage() {
     window.location.reload(true);
   }
-saveTheResult() {
-  const { playerO, playerX } = this.context;
-  const { winner, isDraw, board} = this.state;
-  const playedGame = {
-    playerX,
-    playerO,
-    isDraw,
-    winner,
-    board
-  }
 
-  fetch('/playedgames', {
-    method: 'post',
-    body: JSON.stringify(playedGame)
-  })
+  saveTheResult = () => {
+    const { playerX, playerO } = this.context;
+    const { winner, isDraw, board} = this.state;
+    const playedGame = {
+      id: uuid(),
+      playerX,
+      playerO,
+      isDraw,
+      winner,
+      board
+    }
+
+    fetch('http://localhost:8080/playedgames', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(playedGame)
+    }).catch(e => console.log(e))
 }
-  
 
   generateBoard() {
     let tiles = [];
@@ -92,6 +98,7 @@ saveTheResult() {
       if (prevState.isFinished === false) {
         this.setState(({ isFinished: true }));
         this.setState(({ winner: playerO }));
+        // this.setState(({tiles}) => tiles.forEach(button => button.props.disabled = true))
       }
     } else {
       if (this.checkIfDraw(board)) {
@@ -112,6 +119,11 @@ saveTheResult() {
           this.setState(({ isDraw: true }));
         }
       }
+    }
+    
+    if(this.state.isFinished) {
+      const allButtons = document.getElementsByTagName('button');
+      Array.from(allButtons).forEach(btn => btn.disabled = true)
     }
   }
 

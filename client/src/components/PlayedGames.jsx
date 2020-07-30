@@ -9,24 +9,32 @@ export default class PlayedGames extends Component {
   }
   componentDidMount() {
     this.fetchData()
-    console.log(this.state.games);
   }
 
   fetchData() {
     fetch('/playedgames')
-    .then(res => res.json())
-    .then(games => this.setState(({games: games})))
+      .then(res => res.json())
+      .then(games => this.setState(({ games: games })))
+  }
+
+  renderInfo(game) {
+    const { playerO, playerX, isDraw } = game;
+    const string =
+      isDraw
+        ? `There was a draw between ${playerO} and ${playerX}`
+        : `${playerX} won with ${playerO}`
+    return string;
   }
 
   render() {
-    
-  const games = this.state.games.map((game, i) => <span key={i}>{game.playerX} won with {game.playerO}</span>);
+    const { games } = this.state;
+    const previousGames = games.map((game, i) => <li key={i}>{this.renderInfo(game, i)}</li>);
     return (
       <div>
         <h1>Played games so far:</h1>
-        <div>
-          { games }
-        </div>
+        <ol>
+          {previousGames}
+        </ol>
       </div>
     )
   }
