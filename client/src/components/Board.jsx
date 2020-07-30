@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EndGame from './EndGame';
 
 export default class Board extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ export default class Board extends Component {
       board: [],
       tiles: [],
       winner: '',
+      isFinished: false
     }
   }
 
@@ -20,7 +22,7 @@ export default class Board extends Component {
   }
 
   refreshPage() {
-    window.location.reload(true);
+    
   }
 
   generateBoard() {
@@ -33,7 +35,7 @@ export default class Board extends Component {
           <button
             key={`${x}-${y}`}
             className='tile'
-            disabled={false}
+            disabled={this.state.isFinished ? true : false}
             onClick={(e) => this.handleTile(x, y, e)} />
         );
       };
@@ -41,7 +43,7 @@ export default class Board extends Component {
     this.setState({ tiles, board });
   }
 
-  checkIfWon(tiles, winner) {
+  checkIfWon(tiles) {
     if (
       (tiles.filter(({ x, y }) => x + y === 2).length === 3) ||
       (tiles.filter(({ x, y }) => x === 0).length === 3) ||
@@ -51,32 +53,47 @@ export default class Board extends Component {
       (tiles.filter(({ x, y }) => y === 0).length === 3) ||
       (tiles.filter(({ x, y }) => y === 1).length === 3) ||
       (tiles.filter(({ x, y }) => y === 2).length === 3)
-    ) {
-    }
+    ) return true;
+    return false;
   }
 
   componentDidMount() {
     this.generateBoard();
   }
 
-  
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const { playerX, playerO } = this.context;
     const { board } = this.state;
     const tilesX = board.filter(({ tile }) => tile === 'X');
     const tilesO = board.filter(({ tile }) => tile === 'O');
-    this.checkIfWon(tilesX, playerX);
-    this.checkIfWon(tilesO, playerO);
+
+    if (this.checkIfWon(tilesO)) {
+      if (prevState.isFinished === false) {
+        this.setState(({ isFinished: true }));
+        this.setState(({ winner: playerO }));
+      }
+    }
+
+    if (this.checkIfWon(tilesX)) {
+      if (prevState.isFinished === false) {
+        this.setState(({ isFinished: true }));
+        this.setState(({ winner: playerX }));
+      }
+    }
   }
 
   render() {
+    const { isX, tiles, isFinished, winner } = this.state;
+    const { playerX, playerO } = this.context;
     return (
       <>
-        <h2>{this.state.isX ? this.context.playerX : this.context.playerO}</h2>
-        <div className='flex-wrap'>
-          {this.state.tiles}
+        <div className='flex-column'>
+          {isFinished
+            ? <h2>{playerO} and {playerX} played a game and {winner} won!</h2>
+            : <h2>{isX ? playerX : playerO}'s turn</h2>}
+          <div className='flex-wrap'>{tiles}</div>
+          <button onClick={this.refreshPage}>Restart</button>
         </div>
-        <button onClick={this.refreshPage}>Restart</button>
       </>
     )
   }

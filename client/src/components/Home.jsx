@@ -31,18 +31,24 @@ class Home extends Component {
   render() {
     return (
       <>
-      {!this.state.continue ?
-        <form>
-          <label htmlFor='playerX'>First player</label>
-          <input id='playerX' onBlur={this.handleNames} />
-          <label htmlFor='playerO'>Second player</label>
-          <input id='playerO' onBlur={this.handleNames} />
-          <button onClick={this.startGame}>Start new Game</button>
-        </form>
-      : <stateContext.Provider value={this.state}>
-          <Board />
-        </stateContext.Provider>
-      }
+        {!this.state.continue ?
+          <form>
+            <div className='fixed-width'>
+              <div>
+                <label htmlFor='playerX'>First player</label>
+                <input id='playerX' onBlur={this.handleNames} />
+              </div>
+              <div>
+                <label htmlFor='playerO'>Second player</label>
+                <input id='playerO' onBlur={this.handleNames} />
+              </div>
+            </div>
+            <button onClick={this.startGame}>Start new Game</button>
+          </form>
+          : <stateContext.Provider value={this.state}>
+            <Board />
+          </stateContext.Provider>
+        }
       </>
     )
   }
