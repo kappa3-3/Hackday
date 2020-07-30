@@ -10,7 +10,8 @@ export default class Board extends Component {
       tiles: [],
       winner: '',
       isFinished: false,
-      isDraw: false
+      isDraw: false,
+      message: null
     }
   }
 
@@ -28,7 +29,7 @@ export default class Board extends Component {
 
   saveTheResult = () => {
     const { playerX, playerO } = this.context;
-    const { winner, isDraw, board} = this.state;
+    const { winner, isDraw, board } = this.state;
     const playedGame = {
       id: uuid(),
       playerX,
@@ -45,8 +46,9 @@ export default class Board extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(playedGame)
-    }).catch(e => console.log(e))
-}
+    }).then(() => this.setState(({message: `The game was saved succesfully!`})))
+    .catch(e => this.setState(({message: `Ooops, your game was not saved due to the error: ${e}`})))
+  }
 
   generateBoard() {
     let tiles = [];
@@ -81,7 +83,7 @@ export default class Board extends Component {
   }
 
   checkIfDraw(board) {
-    return board.filter(({tile}) => tile.length > 0).length === 9 ? true : false;
+    return board.filter(({ tile }) => tile.length > 0).length === 9 ? true : false;
   }
 
   componentDidMount() {
@@ -98,7 +100,6 @@ export default class Board extends Component {
       if (prevState.isFinished === false) {
         this.setState(({ isFinished: true }));
         this.setState(({ winner: playerO }));
-        // this.setState(({tiles}) => tiles.forEach(button => button.props.disabled = true))
       }
     } else {
       if (this.checkIfDraw(board)) {
@@ -120,29 +121,34 @@ export default class Board extends Component {
         }
       }
     }
-    
-    if(this.state.isFinished) {
-      const allButtons = document.getElementsByTagName('button');
+
+    if (this.state.isFinished) {
+      const allButtons = document.getElementsByClassName('tile');
       Array.from(allButtons).forEach(btn => btn.disabled = true)
     }
   }
 
   render() {
-    const { isX, tiles, isFinished, isDraw, winner } = this.state;
+    const { isX, tiles, isFinished, isDraw, winner, message } = this.state;
     const { playerX, playerO } = this.context;
     return (
       <>
         <div className='flex-column'>
           {
-          isDraw 
-          ? <h2>{playerO} and {playerX} played a game and there was a draw</h2>
-          : isFinished
-            ? <h2>{playerO} and {playerX} played a game and {winner} won!</h2>
-            : <h2>{isX ? playerX : playerO}'s turn</h2>
+            isDraw
+              ? <h2>{playerO} and {playerX} played a game and there was a draw</h2>
+              : isFinished
+                ? <h2>{playerO} and {playerX} played a game and {winner} won!</h2>
+                : <h2>{isX ? playerX : playerO}'s turn</h2>
           }
           <div className='flex-wrap'>{tiles}</div>
-          <button onClick={this.refreshPage}>Restart</button>
-          <button onClick={this.saveTheResult}>Save the game</button>
+          <div>
+            <button onClick={this.refreshPage} className='action-btn'>Restart</button>
+            {!message 
+            ? <button onClick={this.saveTheResult}className='action-btn'>Save the game</button>
+            : <span className='message'>{message}</span>
+            }
+          </div>
         </div>
       </>
     )

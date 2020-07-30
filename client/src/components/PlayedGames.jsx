@@ -18,11 +18,11 @@ export default class PlayedGames extends Component {
   }
 
   renderInfo(game) {
-    const { playerO, playerX, isDraw } = game;
+    const { playerO, playerX, isDraw, winner } = game;
     const string =
       isDraw
         ? `There was a draw between ${playerO} and ${playerX}`
-        : `${playerX} won with ${playerO}`
+        : `${playerX} played with ${playerO} and ${winner} won`
     return string;
   }
 
@@ -30,7 +30,7 @@ export default class PlayedGames extends Component {
     const { games } = this.state;
     const previousGames = games.map((game, i) => <li key={i}>{this.renderInfo(game, i)}</li>);
     return (
-      <div>
+      <div className='flex-column'>
         <h1>Played games so far:</h1>
         <ol>
           {previousGames}

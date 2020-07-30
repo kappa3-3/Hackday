@@ -32,18 +32,18 @@ class Home extends Component {
     return (
       <>
         {!this.state.continue ?
-          <form>
+          <form className='flex-column'>
             <div className='fixed-width'>
-              <div>
-                <label htmlFor='playerX'>First player</label>
-                <input id='playerX' onBlur={this.handleNames} />
-              </div>
-              <div>
-                <label htmlFor='playerO'>Second player</label>
+              <div className='player-name'>
+                <label htmlFor='playerO'>First player</label>
                 <input id='playerO' onBlur={this.handleNames} />
               </div>
+              <div className='player-name'>
+                <label htmlFor='playerX'>Second player</label>
+                <input id='playerX' onBlur={this.handleNames} />
+              </div>
             </div>
-            <button onClick={this.startGame}>Start new Game</button>
+            <button onClick={this.startGame} className='action-btn'>Start </button>
           </form>
           : <stateContext.Provider value={this.state}>
             <Board />

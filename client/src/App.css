@@ -11,7 +11,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 5vw 35vw;
+  padding: 1vh 35vw 2vh;
 }
 
 .tile {
@@ -38,9 +38,6 @@ button:disabled {
   justify-content: center;
 }
 
-.fixed-width {
-  min-width: 30vw;
-}
 
 .redirect {
   display: block;
@@ -54,4 +51,37 @@ button:disabled {
 }
 .redirect:hover {
   font-weight: bold;
+}
+
+.action-btn {
+  padding: 10px;
+  font-size: 20px;
+  margin: 10px;
+  background-color: #666a72;
+  border-radius: 5px;
+  color: #fff;
+  outline: none;
+}
+
+.message {
+  padding: 10px;
+  font-size: 20px;
+  margin: 10px;
+  background-color: #55dbd6;
+  border-radius: 5px;
+  outline: none;
+}
+/* .fixed-width {
+  width: 55vw;
+} */
+.player-name {
+  font-size: 20px;
+  margin: 15px;
+
+}
+
+input { 
+  width: 100%;
+  font-size: 25px;
+  margin: 10px 0;
 }
