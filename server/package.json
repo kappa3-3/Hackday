@@ -1,17 +1,16 @@
 {
-  "name": "salt-shopping-server",
-  "version": "2.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "hackday",
+  "version": "1.0.0",
+  "description": "tic, tac, toe game",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "json-server --watch db.json --port 8080",
     "server": "node server.js"
   },
-  "keywords": [],
   "author": "Kasia Janiszewska",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
-    "json-server": "^0.15.1"
+    "json-server": "^0.16.1"
   }
 }
