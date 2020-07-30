@@ -7,9 +7,7 @@ server.use(middlewares);
 server.use(jsonServer.bodyParser);
 server.use('/playedgames', (req, res, next) => {
   if (req.method === 'POST') {
-    console.log(req.body);
-    res
-      .send(req.body);
+    res.send(req.body);
   }
   next();
 });
