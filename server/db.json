@@ -1,9 +1,328 @@
 {
   "playedgames": [
     {
-      "playerX" : "Patryk",
-      "playerO" : "Levy",
-      "winner" : "Patryk"
+      "id": "1",
+      "playerX": "Krzychu",
+      "playerO": "Zbysiu",
+      "isDraw": true,
+      "winner": "",
+      "board": [
+        {
+          "x": 0,
+          "y": 0,
+          "tile": "O"
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "tile": "O"
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "tile": "X"
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "tile": "X"
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "tile": "O"
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "tile": "O"
+        },
+        {
+          "x": 2,
+          "y": 0,
+          "tile": "O"
+        },
+        {
+          "x": 2,
+          "y": 1,
+          "tile": "X"
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "tile": "X"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "playerX": "Adam",
+      "playerO": "Zbysiu",
+      "isDraw": false,
+      "winner": "Adam",
+      "board": [
+        {
+          "x": 0,
+          "y": 0,
+          "tile": "O"
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "tile": "O"
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "tile": "X"
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "tile": "X"
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "tile": "O"
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "tile": "X"
+        },
+        {
+          "x": 2,
+          "y": 0,
+          "tile": "O"
+        },
+        {
+          "x": 2,
+          "y": 1,
+          "tile": "O"
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "tile": "X"
+        }
+      ]
+    },
+    {
+      "id": "6347fb-130f-cda3-3510-ba317ffcb61",
+      "playerX": "Adam",
+      "playerO": "Ewa",
+      "isDraw": false,
+      "winner": "Ewa",
+      "board": [
+        {
+          "x": 0,
+          "y": 0,
+          "tile": "O"
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "tile": ""
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "tile": "X"
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "tile": ""
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "tile": "O"
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "tile": ""
+        },
+        {
+          "x": 2,
+          "y": 0,
+          "tile": "X"
+        },
+        {
+          "x": 2,
+          "y": 1,
+          "tile": ""
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "tile": "O"
+        }
+      ]
+    },
+    {
+      "id": "226381b-06ed-14b5-4476-8eda0e71e5f4",
+      "playerX": "Krzychu",
+      "playerO": "Zbysiu",
+      "isDraw": false,
+      "winner": "Zbysiu",
+      "board": [
+        {
+          "x": 0,
+          "y": 0,
+          "tile": "O"
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "tile": ""
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "tile": "X"
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "tile": ""
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "tile": "O"
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "tile": ""
+        },
+        {
+          "x": 2,
+          "y": 0,
+          "tile": "X"
+        },
+        {
+          "x": 2,
+          "y": 1,
+          "tile": ""
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "tile": "O"
+        }
+      ]
+    },
+    {
+      "id": "c1c1e04-e223-c3a8-18b-3a2a8631071b",
+      "playerX": "Seba",
+      "playerO": "Przemo",
+      "isDraw": true,
+      "winner": "Przemo",
+      "board": [
+        {
+          "x": 0,
+          "y": 0,
+          "tile": "X"
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "tile": "X"
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "tile": "O"
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "tile": "O"
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "tile": "X"
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "tile": "X"
+        },
+        {
+          "x": 2,
+          "y": 0,
+          "tile": "O"
+        },
+        {
+          "x": 2,
+          "y": 1,
+          "tile": "O"
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "tile": "O"
+        }
+      ]
+    },
+    {
+      "id": "835610a-dda-c6b-7738-a6838af4cf61",
+      "playerX": "Przemo",
+      "playerO": "Sebcio",
+      "isDraw": false,
+      "winner": "Sebcio",
+      "board": [
+        {
+          "x": 0,
+          "y": 0,
+          "tile": "O"
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "tile": "O"
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "tile": "X"
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "tile": "X"
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "tile": "O"
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "tile": ""
+        },
+        {
+          "x": 2,
+          "y": 0,
+          "tile": "X"
+        },
+        {
+          "x": 2,
+          "y": 1,
+          "tile": ""
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "tile": "O"
+        }
+      ]
     }
-  ]  
+  ]
 }
