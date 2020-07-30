@@ -31,6 +31,17 @@ button:disabled {
   justify-content: center;
 }
 
+.flex-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fixed-width {
+  min-width: 30vw;
+}
+
 .redirect {
   display: block;
   text-align: center;
