@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import EndGame from './EndGame';
 
 export default class Board extends Component {
   constructor(props) {
@@ -9,7 +8,8 @@ export default class Board extends Component {
       board: [],
       tiles: [],
       winner: '',
-      isFinished: false
+      isFinished: false,
+      isDraw: false
     }
   }
 
@@ -22,8 +22,25 @@ export default class Board extends Component {
   }
 
   refreshPage() {
-    
+    window.location.reload(true);
   }
+saveTheResult() {
+  const { playerO, playerX } = this.context;
+  const { winner, isDraw, board} = this.state;
+  const playedGame = {
+    playerX,
+    playerO,
+    isDraw,
+    winner,
+    board
+  }
+
+  fetch('/playedgames', {
+    method: 'post',
+    body: JSON.stringify(playedGame)
+  })
+}
+  
 
   generateBoard() {
     let tiles = [];
@@ -57,6 +74,10 @@ export default class Board extends Component {
     return false;
   }
 
+  checkIfDraw(board) {
+    return board.filter(({tile}) => tile.length > 0).length === 9 ? true : false;
+  }
+
   componentDidMount() {
     this.generateBoard();
   }
@@ -72,6 +93,12 @@ export default class Board extends Component {
         this.setState(({ isFinished: true }));
         this.setState(({ winner: playerO }));
       }
+    } else {
+      if (this.checkIfDraw(board)) {
+        if (prevState.isDraw === false) {
+          this.setState(({ isDraw: true }));
+        }
+      }
     }
 
     if (this.checkIfWon(tilesX)) {
@@ -79,20 +106,31 @@ export default class Board extends Component {
         this.setState(({ isFinished: true }));
         this.setState(({ winner: playerX }));
       }
+    } else {
+      if (this.checkIfDraw(board)) {
+        if (prevState.isDraw === false) {
+          this.setState(({ isDraw: true }));
+        }
+      }
     }
   }
 
   render() {
-    const { isX, tiles, isFinished, winner } = this.state;
+    const { isX, tiles, isFinished, isDraw, winner } = this.state;
     const { playerX, playerO } = this.context;
     return (
       <>
         <div className='flex-column'>
-          {isFinished
+          {
+          isDraw 
+          ? <h2>{playerO} and {playerX} played a game and there was a draw</h2>
+          : isFinished
             ? <h2>{playerO} and {playerX} played a game and {winner} won!</h2>
-            : <h2>{isX ? playerX : playerO}'s turn</h2>}
+            : <h2>{isX ? playerX : playerO}'s turn</h2>
+          }
           <div className='flex-wrap'>{tiles}</div>
           <button onClick={this.refreshPage}>Restart</button>
+          <button onClick={this.saveTheResult}>Save the game</button>
         </div>
       </>
     )
